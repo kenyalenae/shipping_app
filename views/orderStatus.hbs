@@ -1,0 +1,14 @@
+<h1>Status of Orders</h1>
+
+<div class="pending-orders">
+
+    <h2>Pending Orders</h2>
+
+    {{#each orders}}
+        <h3>{{this.item}}</h3>
+        <p><a href="/shipping/{{this.id}}">{{this.item}} order details</a></p>
+    {{else}}
+        <p>No orders in the database</p>
+    {{/each}}
+
+</div>
