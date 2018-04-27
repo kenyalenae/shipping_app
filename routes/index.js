@@ -43,9 +43,9 @@ router.get('/logout', function(req, res, next) {
 });
 
 /* GET account home page */
-router.get('/loginHomepage', isLoggedIn, function(req, res, next) {
+router.get('/accountHome', isLoggedIn, function(req, res, next) {
 
-    res.render('/loginHomepage', {
+    res.render('/accountHome', {
         username:req.user.local.username
     });
 });
@@ -102,7 +102,7 @@ router.get('/shipping/:_id', function(req, res, next){
             if (shippingDoc) {
                 console.log(shippingDoc); res.render('orderInfo', { description:shippingDoc.description , priceRange:shippingDoc.priceRange, shipMethod:shippingDoc.shipMethod } );
             } else {  // else, if order not found, shippingDoc will be undefined
-                var err =  Error('Bird not found'); // create a new error
+                var err =  Error('Order not found'); // create a new error
                 err.status = 404; // set the error status to 404
                 throw err; // this causes the chained catch function to run
             }
