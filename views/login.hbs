@@ -1,4 +1,6 @@
-<h2>Log in to your account</h2>
+<h2>Sign In To Your Account</h2>
+<h4>Enter Your Username and Password</h4>
+<h6>* indicates a required field</h6>
 
 <!-- Log in failure messages -->
 <ul>
@@ -8,16 +10,17 @@
 </ul>
 
 <form method="POST" action="/login">
-    Username: <input name="username"/>
-    Password: <input type="password" name="password"/>
+    * Username: <input name="username"/>
+    * Password: <input type="password" name="password"/>
 
-    <input type="submit" value="Log in">
+    <input type="submit" value="Sign in">
 </form>
 
 <p>If you don't have an account, you can
     <a href="/signup">Sign up here</a>
 </p>
 
-<h2>Log in with Twitter</h2>
+<h2>Sign in with Facebook</h2>
 
-<p>Or you can <a href="/auth/twitter">use your Twitter account to sign in</a></p>
+<p>Or you can <a href="/auth/facebook">use your Facebook account to sign in</a></p>
+

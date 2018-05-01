@@ -45,7 +45,7 @@ router.get('/logout', function(req, res, next) {
 /* GET account home page */
 router.get('/accountHome', isLoggedIn, function(req, res, next) {
 
-    res.render('/accountHome', {
+    res.render('accountHome', {
         username:req.user.local.username
     });
 });
@@ -74,7 +74,7 @@ router.post('/newOrder', function(req, res, next){
     // Save the new order form to DB as a new Shipping document
     ship.save().then( (shippingDoc) => {
         console.log(shippingDoc); // not required, but helps to see whats happening
-        res.redirect('/newOrder'); // create a request to /newOrder to load new Order form page
+        res.redirect('/orderStatus'); // create a request to /newOrder to load new Order form page
     }).catch((err) => {
         next(err); // Send errors to the error handlers
     });

@@ -3,16 +3,25 @@
 <div class="new-order">
 
     <form method="POST" action="/newOrder">
+        <fieldset>
 
-        Item Name:          <input name="item" required>             <br>
-        Description:        <input name="description" required>      <br>
-        Price Range:        <input name="priceRange" required>       <br>
-        Desired Ship Method <select name="shipMethod">
-                            <option value="Ship by Airplane">Ship By Airplane (2-3 weeks)</option>
-                            <option value="Ship by Boat">Ship by Boat (approx. 45 days)</option>
-                            </select>
-        <button type="submit">Submit Your Order Request</button>
+            Item Name:                  <input name="item" placeholder="iPhone" required>             <br>
+            Description:                <textarea name="description" placeholder="The color I would prefer is ..." required></textarea>      <br>
+            Desired Price:              <input name="priceRange" required>       <br>
+            Desired Ship Method:        <select name="shipMethod">
+            <option value="Ship by Airplane">Ship By Airplane (2-3 weeks)</option>
+            <option value="Ship by Boat">Ship by Boat (approx. 45 days)</option>
+            </select>
+            Link To Product Website (Optional) <input name="productWebsite" placeholder="www.amazon.com"> <br>
+            <div class="float-right">
+                <input type="checkbox" id="confirmField">
+                <label class="label-inline" for="confirmField">Send a copy to yourself</label>
+            </div>
+            <input class="button-primary" type="submit" value="Submit">
+            <a class="button" href="/accountHome">Cancel</a>
 
+
+        </fieldset>
     </form>
 
 </div>
