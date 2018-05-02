@@ -7,11 +7,11 @@ var userSchema = mongoose.Schema({
 
         username: {
             type: String,
-            required: true,
+            required: [true, 'Username is required']
         },
         password: {
             type: String,
-            required: true
+            required: [true, 'Password is required']
         },
         firstName: {
             type: String
@@ -21,26 +21,25 @@ var userSchema = mongoose.Schema({
         },
         email: {
             type: String,
-            required: true,
+            required: [true, 'Email is required']
         },
         phone: {
             type: Number,
-            required: true
+            required: [true, 'Phone Number is required']
         },
         country: {
             type: String,
-            required: true
         },
         addressLine1: {
             type: String,
-            required: true
+            required: [true, 'Address is required']
         },
         addressLine2: {
             type: String
         },
         city: {
             type: String,
-            required: true
+            required: [true, 'City is required']
         },
         province: {
             type: String
