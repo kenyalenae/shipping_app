@@ -8,21 +8,15 @@
     {{/each}}
 </ul>
 
-<div class="container">
-
-    <div class="row">
+<div class="container" id="signupForm">
+    <form method="POST" action="/signup">
+    <div class="row" id="rowOne">
         <div class="column">
-            Step 1: Choose your language and username
+            Step 1: Choose your username
         </div>
 
         <div class="column">
-            <form method="POST" action="/signup">
-                Choose a language preference: <select name="language">
-                <option value="English">English</option>
-                <option value="Swahili">Swahili</option></select>
-                <!-- TODO when user chooses language, website changes to that language -->
-                * Username: <input name="username" required/>
-            </form>
+            * Username: <input name="username" id="username" />
         </div>
     </div>
     <div class="row">
@@ -30,11 +24,9 @@
             Step 2: Choose your password
         </div>
         <div class="column">
-            <form method="POST" action="/signup">
-                * Password: <input type="password" name="password" required/>
-                * Re-Type Password: <input type="password" name="password" required/>
-                <!-- TODO two password fields for user to confirm the text typed -->
-            </form>
+                * Password: <input type="password" id="password" name="password" onkeyup="check_password()" />
+                * Re-Type Password: <input type="password" id="confirmPassword" name="passwordCheck" onkeyup="check_password()" /> <span id="matching"></span>
+                <!-- two password fields for user to confirm the text typed -->
         </div>
     </div>
     <div class="row">
@@ -42,26 +34,13 @@
             Step 3: Enter your contact information
         </div>
         <div class="column">
-            <form method="POST" action="/signup">
-                Title: <select name="nameTitle">
-                <option value="select">Select</option>
-                <option value="mr">Mr</option>
-                <option value="mrs">Mrs</option>
-                <option value="ms">Ms</option>
-                <option value="miss">Miss</option>
-                <option value="miss">Dr</option>
-                </select>
-                * First Name: <input name="firstName" required/>
-                M.I. <input name="middleInitial"/>
-                * Last Name: <input name="lastName" required/>
-            </form>
+                * First Name: <input name="firstName" id="firstName" />
+                * Last Name: <input name="lastName" id="lastName"/>
         </div>
         <div class="column">
-            <form method="POST" action="/signup">
-                * Email Address: <input name="email" required/>
-                * Re-Type Email Address: <input name="email" required/>
-                * Phone Number: <input name="phone" required/>
-            </form>
+                * Email Address: <input type="email" name="email" id="email" />
+                * Re-Type Email Address: <input type="email"  name="email" />
+                * Phone Number: <input type="number" name="phone" id="phone"/>
         </div>
     </div>
     <div class="row">
@@ -69,31 +48,27 @@
             Step 4: Enter your home address
         </div>
         <div class="column">
-            <form method="POST" action="/signup">
-                * Country: <select name="country">
+                * Country: <select name="country" id="country">
                 <option value="United States">United States</option>
                 <option value="Kenya">Kenya</option>
                 </select>
                 <!-- TODO make Country field a drop down with all the countries -->
                 <!-- TODO when user selects country, change address format based on country -->
-                * Address Line 1: <input name="addressLine1" required/>
-                Address Line 2: <input name="addressLine2"/>
-                Address Line 3: <input name="addressLine3"/>
-                * City: <input name="city" required/>
-                State/Province: <input name="province"/>
-                Postal Code: <input name="postalCode"/>
-            </form>
+                * Address Line 1: <input name="addressLine1" id="addressLine1"/>
+                Address Line 2: <input name="addressLine2" id="addressLine2"/>
+                * City: <input name="city" id="city"/>
+                State/Province: <input name="province" id="province"/>
+                Postal Code: <input name="postalCode" id="postalCode"/>
         </div>
     </div>
     <div class="row">
         <div class="column"></div>
         <div class="column column-50 column-offset-25">
-            <form method="POST" action="/signup">
-                <input type="submit" value="Sign up">
-            </form>
+                <input type="submit" id="submit" value="Sign up">
+
         </div>
     </div>
-
+    </form>
 
 
 </div>
@@ -102,9 +77,21 @@
     <a href="/login">Sign in here</a>
 </p>
 
-<h2>Sign in with Facebook</h2>
+<script>
+    function check_password() {
+        if (document.getElementById('password').value === document.getElementById('confirmPassword').value) {
+            document.getElementById('matching').style.color = 'green';
+            document.getElementById('matching').innerHTML = 'passwords match';
+            document.getElementById('submit').disabled = false;
+        } else {
+            document.getElementById('matching').style.color = 'red';
+            document.getElementById('matching').innerHTML = 'passwords don\'t match';
+            document.getElementById('submit').disabled = true;
+        }
 
-<p>Or you can <a href="/auth/facebook">use your Facebook account to sign in</a></p>
+    }
+
+</script>
 
 
 

@@ -14,16 +14,17 @@
         </tr>
         </thead>
         <tbody>
+        {{#each orders}}
         <tr>
-            {{#each orders}}
             <td>{{this.item}}</td>
             <td>Pending</td>
             <td></td>
             <td><a href="/shipping/{{this.id}}">{{this.item}} order details</a></td>
             {{else}}
             <td>No orders in the database</td>
-            {{/each}}
+
         </tr>
+        {{/each}}
         </tbody>
     </table>
 
