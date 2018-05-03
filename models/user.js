@@ -1,7 +1,13 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
-var userSchema = mongoose.Schema({
+var userSchema = new mongoose.Schema({
+
+    role: {
+        type: String,
+        emum: ['admin', 'customer'],
+        default: 'customer'
+    },
 
     local: {
 
@@ -13,40 +19,40 @@ var userSchema = mongoose.Schema({
             type: String,
             required: [true, 'Password is required']
         },
-        firstName: {
-            type: String
-        },
-        lastName: {
-            type: String
-        },
-        email: {
-            type: String,
-            required: [true, 'Email is required']
-        },
-        phone: {
-            type: Number,
-            required: [true, 'Phone Number is required']
-        },
-        country: {
-            type: String,
-        },
-        addressLine1: {
-            type: String,
-            required: [true, 'Address is required']
-        },
-        addressLine2: {
-            type: String
-        },
-        city: {
-            type: String,
-            required: [true, 'City is required']
-        },
-        province: {
-            type: String
-        },
-        postalCode: {
-            type: Number
-        }
+    },
+    firstName: {
+        type: String
+    },
+    lastName: {
+        type: String
+    },
+    email: {
+        type: String,
+        //required: [true, 'Email is required']
+    },
+    phone: {
+        type: Number,
+        //required: [true, 'Phone Number is required']
+    },
+    country: {
+        type: String,
+    },
+    addressLine1: {
+        type: String,
+        //required: [true, 'Address is required']
+    },
+    addressLine2: {
+        type: String
+    },
+    city: {
+        type: String,
+        //required: [true, 'City is required']
+    },
+    province: {
+        type: String
+    },
+    postalCode: {
+        type: Number
     }
 });
 
