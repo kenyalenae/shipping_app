@@ -10,7 +10,8 @@ var mongoose = require('mongoose');
 var MongoDBStore = require('connect-mongodb-session')(session);
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var admin = require('./routes/admin');
+var auth = require('./routes/auth');
 
 var app = express();
 
@@ -42,8 +43,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+app.use('/', auth);
+app.use('/admin', admin);
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -65,9 +67,10 @@ app.use(function(err, req, res, next) {
     res.render('404');      // render custom 404 page
   }
 
-  else
-    res.status(err.status || 500);
-    res.render('error');    // render the error page
+  else {
+      res.status(err.status || 500);
+      res.render('error');    // render the error page
+  }
 });
 
 module.exports = app;

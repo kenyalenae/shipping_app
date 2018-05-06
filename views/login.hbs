@@ -1,3 +1,5 @@
+<body class="welcome">
+
 <h2>Sign In To Your Account</h2>
 <h4>Enter Your Username and Password</h4>
 <h6>* indicates a required field</h6>
@@ -9,7 +11,7 @@
     {{/each}}
 </ul>
 
-<form method="POST" action="/login">
+<form method="POST" action="/login" id="loginForm">
     * Username: <input name="username"/>
     * Password: <input type="password" name="password"/>
 
@@ -20,7 +22,6 @@
     <a href="/signup">Sign up here</a>
 </p>
 
-<h2>Sign in with Facebook</h2>
+</body>
 
-<p>Or you can <a href="/auth/facebook">use your Facebook account to sign in</a></p>
 
