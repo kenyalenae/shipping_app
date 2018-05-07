@@ -4,9 +4,8 @@ var Shipping = require('../models/shipping');
 var router = express.Router();
 
 /* verify if customer is logged in */
-router.use(isLoggedIn);
 
-function isLoggedIn(req, res, next){
+router.use(function isLoggedIn(req, res, next){
     console.log('is logged in');
     if (req.isAuthenticated()) {
         if (req.user.role === 'customer') {
@@ -17,7 +16,7 @@ function isLoggedIn(req, res, next){
     } else {
         res.redirect('/')
     }
-};
+});
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -48,7 +47,7 @@ router.post('/newOrder', function(req, res, next){
 router.get('/orderStatus', function(req, res, next){
 
     Shipping.findById(req.params._id).then( order => {
-        res.render('order', {order: order})
+        res.render('orderStatus', {order: order})
     })
 
     // // query to fetch all documents, need to get the name fields and sort by name
@@ -78,6 +77,49 @@ router.get('/shipping/:_id', function(req, res, next){
         }).catch( (err) => {
             next(err); // 404 and database errors
     });
+});
+
+/* GET account info page */
+router.get('/accountInfo', function(req, res, next) {
+    res.render('accountInfo')
+});
+
+/* POST update account information */
+router.post('/updateAccountInfo', function(req, res, next){
+
+    if (req.body.firstName || req.body.lastName || req.body.email || req.body.phone ||
+    req.body.country || req.body.addressLine1 || req.body.addressLine2 || req.body.city ||
+    req.body.province || req.body.postalCode) { // if any fields have been updated
+        // add to the req.user object
+        req.user.firstName = req.body.firstName || req.user.firstName;
+        req.user.lastName = req.body.lastName || req.user.lastName;
+        req.user.email = req.body.email || req.user.email;
+        req.user.phone = req.body.phone || req.user.phone;
+        req.user.country = req.body.country || req.user.country;
+        req.user.addressLine1 = req.body.addressLine1 || req.user.addressLine1;
+        req.user.addressLine2 = req.body.addressLine2 || req.user.addressLine2;
+        req.user.city = req.body.city || req.user.city;
+        req.user.province = req.body.province || req.user.province;
+        req.user.postalCode = req.body.postalCode || req.user.postalCode;
+
+        // save the modified user, to save to the database
+        req.user.save()
+            .then( () => {
+                req.flash('updateMsg', 'Your information was updated')
+                res.redirect('/accountInfo');
+            })
+            .catch ( (err) => {
+                if (err.name === 'ValidationError') {
+                    req.flash('updateMsg', 'Your information is not valid')
+                    res.redirect('/accountInfo');
+                } else {
+                    next(err);
+                }
+            });
+    } else {
+        req.flash('updateMsg', 'Please enter some data');
+        res.redirect('/accountInfo');
+    }
 });
 
 module.exports = router;

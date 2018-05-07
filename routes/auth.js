@@ -2,18 +2,19 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
+
 /* Middleware to verify if user is logged in, and to let them proceed
 * If not, redirect them to login page. */
-function isLoggedIn(req, res, next) {
+router.use(function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
         next();
     } else {
         res.redirect('/login');
     }
-}
+});
 
 /* GET home page. */
-router.get('/', isLoggedIn, function(req, res, next) {
+router.get('/', function(req, res, next) {
     // This will be the home page of application
     // Redirect to account home page if the user is logged in
     // If user not logged in, the IsLoggedIn middleware
@@ -22,7 +23,7 @@ router.get('/', isLoggedIn, function(req, res, next) {
 });
 
 /* GET account home page */
-router.get('/accountHome', isLoggedIn, function(req, res, next) {
+router.get('/accountHome', function(req, res, next) {
 
     res.render('accountHome', {
         username:req.user.local.username,
@@ -58,3 +59,5 @@ router.get('/logout', function(req, res, next) {
     req.logout();
     res.redirect('/');
 });
+
+module.exports = router;

@@ -1,0 +1,112 @@
+<h2>Account Information</h2>
+
+<h3>Contact Information</h3>
+
+<p>First Name:
+    {{#if user.firstName}}
+        {{user.firstName}}
+    {{else}}
+        not set
+    {{/if}}
+</p>
+
+<p>Last Name:
+    {{#if user.lastName}}
+        {{user.lastName}}
+    {{else}}
+        not set
+    {{/if}}
+</p>
+
+<p>Email:
+    {{#if user.email}}
+        {{user.email}}
+    {{else}}
+        not set
+    {{/if}}
+</p>
+
+<p>Phone:
+    {{#if user.phone}}
+        {{user.phone}}
+    {{else}}
+        not set
+    {{/if}}
+</p>
+
+<h3>Address Information</h3>
+
+<p>Country:
+    {{#if user.country}}
+        {{user.country}}
+    {{else}}
+        not set
+    {{/if}}
+</p>
+
+<p>Address Line 1:
+    {{#if user.addressLine1}}
+        {{user.addressLine1}}
+    {{else}}
+        not set
+    {{/if}}
+</p>
+
+<p>Address Line 2:
+    {{#if user.addressLine2}}
+        {{user.addressLine2}}
+    {{else}}
+        not set
+    {{/if}}
+</p>
+
+<p>City:
+    {{#if user.city}}
+        {{user.city}}
+    {{else}}
+        not set
+    {{/if}}
+</p>
+
+<p>Province/State:
+    {{#if user.province}}
+        {{user.province}}
+    {{else}}
+        not set
+    {{/if}}
+</p>
+
+<p>Postal Code:
+    {{#if user.postalCode}}
+        {{user.postalCode}}
+    {{else}}
+        not set
+    {{/if}}
+</p>
+
+
+<h3>Update your account information</h3>
+
+<ul>
+    {{#each messages}}
+        <li>{{this}}</li>
+    {{/each}}
+</ul>
+
+<form action="/updateAccountInfo" method="POST">
+    First Name: <input type="text" name="firstName"> <br>
+    Last Name: <input type="text" name="lastName"> <br>
+    Email: <input type="text" name="email"> <br>
+    Phone: <input type="text" name="phone"> <br>
+    Country: <input type="text" name="country"> <br>
+    Address Line 1: <input type="text" name="addressLine1"> <br>
+    Address Line 2: <input type="text" name="addressLine2"> <br>
+    City: <input type="text" name="city"> <br>
+    Province: <input type="text" name="province"> <br>
+    Postal Code: <input type="text" name="postalCode">
+    <input type="submit" name="updateInfo" value="Update Account Info">
+</form>
+
+<a href="/accountHome">Account Home Page</a>
+
+<a href="/logout">Log out</a>
