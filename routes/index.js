@@ -1,5 +1,6 @@
 var express = require('express');
 var Shipping = require('../models/shipping');
+var User = require('../models/user');
 
 var router = express.Router();
 
@@ -20,7 +21,7 @@ router.use(function isLoggedIn(req, res, next){
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    res.render('newOrder');
+    res.send('new order?');
 });
 
 /* GET new order form page. */
@@ -37,16 +38,23 @@ router.post('/newOrder', function(req, res, next){
     // Save the new order form to DB as a new Shipping document
     ship.save().then( (shippingDoc) => {
         console.log(shippingDoc); // not required, but helps to see whats happening
-        res.redirect('/orderStatus'); // create a request to /newOrder to load new Order form page
+        res.redirect('/orderMessage'); // create a request to /newOrder to load new Order form page
     }).catch((err) => {
         next(err); // Send errors to the error handlers
     });
 });
 
+/* GET order message page. */
+router.get('/orderMessage', function(req, res, next) {
+    res.render('orderMessage')
+});
+
 /* GET order statuses page. */
 router.get('/orderStatus', function(req, res, next){
 
+    // fetch orders by Id
     Shipping.findById(req.params._id).then( order => {
+        console.log('Orders', order); // for debugging
         res.render('orderStatus', {order: order})
     })
 
@@ -81,7 +89,18 @@ router.get('/shipping/:_id', function(req, res, next){
 
 /* GET account info page */
 router.get('/accountInfo', function(req, res, next) {
-    res.render('accountInfo')
+    res.render('accountInfo', {
+        firstName: req.user.firstName,
+        lastName: req.user.lastName,
+        email: req.user.email,
+        phone: req.user.phone,
+        country: req.user.country,
+        addressLine1: req.user.addressLine1,
+        addressLine2: req.user.addressLine2,
+        city: req.user.city,
+        province: req.user.province,
+        postalCode: req.user.postalCode
+    });
 });
 
 /* POST update account information */

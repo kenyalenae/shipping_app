@@ -3,32 +3,32 @@
 <h3>Contact Information</h3>
 
 <p>First Name:
-    {{#if user.firstName}}
-        {{user.firstName}}
+    {{#if firstName}}
+        {{firstName}}
     {{else}}
         not set
     {{/if}}
 </p>
 
 <p>Last Name:
-    {{#if user.lastName}}
-        {{user.lastName}}
+    {{#if lastName}}
+        {{lastName}}
     {{else}}
         not set
     {{/if}}
 </p>
 
 <p>Email:
-    {{#if user.email}}
-        {{user.email}}
+    {{#if email}}
+        {{email}}
     {{else}}
         not set
     {{/if}}
 </p>
 
 <p>Phone:
-    {{#if user.phone}}
-        {{user.phone}}
+    {{#if phone}}
+        {{phone}}
     {{else}}
         not set
     {{/if}}
@@ -37,48 +37,48 @@
 <h3>Address Information</h3>
 
 <p>Country:
-    {{#if user.country}}
-        {{user.country}}
+    {{#if country}}
+        {{country}}
     {{else}}
         not set
     {{/if}}
 </p>
 
 <p>Address Line 1:
-    {{#if user.addressLine1}}
-        {{user.addressLine1}}
+    {{#if addressLine1}}
+        {{addressLine1}}
     {{else}}
         not set
     {{/if}}
 </p>
 
 <p>Address Line 2:
-    {{#if user.addressLine2}}
-        {{user.addressLine2}}
+    {{#if addressLine2}}
+        {{addressLine2}}
     {{else}}
         not set
     {{/if}}
 </p>
 
 <p>City:
-    {{#if user.city}}
-        {{user.city}}
+    {{#if city}}
+        {{city}}
     {{else}}
         not set
     {{/if}}
 </p>
 
 <p>Province/State:
-    {{#if user.province}}
-        {{user.province}}
+    {{#if province}}
+        {{province}}
     {{else}}
         not set
     {{/if}}
 </p>
 
 <p>Postal Code:
-    {{#if user.postalCode}}
-        {{user.postalCode}}
+    {{#if postalCode}}
+        {{postalCode}}
     {{else}}
         not set
     {{/if}}
@@ -107,6 +107,6 @@
     <input type="submit" name="updateInfo" value="Update Account Info">
 </form>
 
-<a href="/accountHome">Account Home Page</a>
+<a class="button" href="/accountHome">Account Home Page</a>
 
-<a href="/logout">Log out</a>
+<a class="button" href="/logout">Log out</a>

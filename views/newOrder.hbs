@@ -7,7 +7,11 @@
 
             Item Name:                  <input name="item" placeholder="iPhone" required>             <br>
             Description:                <textarea name="description" placeholder="The color I would prefer is ..." required></textarea>      <br>
-            Desired Price:              <input name="priceRange" required>       <br>
+            <div class="row">
+                <div class="column column-25">
+            Desired Price Amount:       <input name="priceRange" type="number" required>
+                </div>
+            </div>
             Desired Ship Method:        <select name="shipMethod">
             <option value="Ship by Airplane">Ship By Airplane (2-3 weeks)</option>
             <option value="Ship by Boat">Ship by Boat (approx. 45 days)</option>
