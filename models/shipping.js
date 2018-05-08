@@ -6,6 +6,7 @@ var shippingSchema = new mongoose.Schema({
     description: String, // Description of item e.g. desired color
     priceRange: Number, // Desired price range of item
     shipMethod: String,
+    productWebsite: String,
     complete: { type: Boolean, default: false },
 
     /* This is a reference to the User object who created this order

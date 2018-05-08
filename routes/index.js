@@ -54,22 +54,22 @@ router.get('/orderMessage', function(req, res, next) {
 router.get('/orderStatus', function(req, res, next){
 
 
-    Shipping.find({creator: req.user._id, completed: false}).then( order => {
-        console.log('Order', order); // for debugging
-        res.render('orderStatus', {order: order})
-    }).catch( (err) => {
-        next(err)
-    })
-
-    // // query to fetch all documents, need to get the name fields and sort by name
-    // Shipping.find().select( {item:1} ).sort( {item:1} )
-    //     .then( (shippingDoc) => {
-    //         console.log('All orders', shippingDoc); // for debugging purposes
-    //         res.render('orderStatus',
-    //             {title: 'All Orders', orders:shippingDoc} )
-    //     }).catch( (err) => {
-    //         next(err);
+    // Shipping.find({_creator: req.user._id, completed: false}).then( order => {
+    //     console.log('Order', order); // for debugging
+    //     res.render('orderStatus', {order: order})
+    // }).catch( (err) => {
+    //     next(err)
     // })
+
+    // query to fetch all documents, need to get the name fields and sort by name
+    Shipping.find().select( {item:1} ).sort( {item:1} )
+        .then( (shippingDoc) => {
+            console.log('All orders', shippingDoc); // for debugging purposes
+            res.render('orderStatus',
+                {title: 'All Orders', orders:shippingDoc} )
+        }).catch( (err) => {
+            next(err);
+    })
 });
 
 /* GET info about specific order */
@@ -79,7 +79,7 @@ router.get('/shipping/:_id', function(req, res, next){
     Shipping.findOne( { _id: req.params._id } )
         .then( (shippingDoc) => {
             if (shippingDoc) {
-                console.log(shippingDoc); res.render('orderInfo', { description:shippingDoc.description , priceRange:shippingDoc.priceRange, shipMethod:shippingDoc.shipMethod } );
+                console.log(shippingDoc); res.render('orderInfo', { description:shippingDoc.description, priceRange:shippingDoc.priceRange, shipMethod:shippingDoc.shipMethod, productWebsite:shippingDoc.productWebsite } );
             } else {  // else, if order not found, shippingDoc will be undefined
                 var err =  Error('Order not found'); // create a new error
                 err.status = 404; // set the error status to 404
