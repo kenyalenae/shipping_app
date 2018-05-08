@@ -3,8 +3,8 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   /*max-width: 500px;*/
   margin: auto;
-  background-color: whitesmoke;
-  background: url("../images/palmTrees.jpg") no-repeat;
+  background-color: lightblue;
+  /*background: url("../images/palmTrees.jpg") no-repeat;*/
   background-size: cover;
 }
 
