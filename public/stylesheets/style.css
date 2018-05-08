@@ -10,9 +10,10 @@ body {
 
 .centeredPages {
   margin: auto;
-  background-color: whitesmoke;
+  background-color: rgba(245,245,245,0.9);
   border-radius: 15px;
   padding: 25px;
+
 }
 
 
