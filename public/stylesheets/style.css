@@ -1,15 +1,20 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /*max-width: 500px;*/
+  margin: auto;
+  background-color: whitesmoke;
+  background: url("../images/palmTrees.jpg") no-repeat;
+  background-size: cover;
 }
 
-a {
-  color: #00B7FF;
+.centeredPages {
+  margin: auto;
+  background-color: whitesmoke;
+  border-radius: 15px;
+  padding: 25px;
 }
 
-#signupForm {
-  padding: 50px;
-}
 
 
 

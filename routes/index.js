@@ -34,6 +34,7 @@ router.post('/newOrder', function(req, res, next){
 
     // use form data in req.body to create new order form
     var ship = Shipping(req.body);
+    ship._creator = req.user;
 
     // Save the new order form to DB as a new Shipping document
     ship.save().then( (shippingDoc) => {
@@ -52,10 +53,12 @@ router.get('/orderMessage', function(req, res, next) {
 /* GET order statuses page. */
 router.get('/orderStatus', function(req, res, next){
 
-    // fetch orders by Id
-    Shipping.findById(req.params._id).then( order => {
-        console.log('Orders', order); // for debugging
+
+    Shipping.find({creator: req.user._id, completed: false}).then( order => {
+        console.log('Order', order); // for debugging
         res.render('orderStatus', {order: order})
+    }).catch( (err) => {
+        next(err)
     })
 
     // // query to fetch all documents, need to get the name fields and sort by name

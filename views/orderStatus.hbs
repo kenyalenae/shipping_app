@@ -1,3 +1,5 @@
+<div class="centeredPages">
+
 <h1>Orders</h1>
 
 <div class="pending-orders">
@@ -9,7 +11,6 @@
         <tr>
             <th>Item Name</th>
             <th>Order Status</th>
-            <th>Date Requested</th>
             <th>Order Details</th>
         </tr>
         </thead>
@@ -18,7 +19,6 @@
         <tr>
             <td>{{this.item}}</td>
             <td>Pending</td>
-            <td></td>
             <td><a href="/shipping/{{this.id}}">{{this.item}} order details</a></td>
             {{else}}
             <td>No orders in the database</td>
@@ -39,15 +39,13 @@
         <tr>
             <th>Item Name</th>
             <th>Order Status</th>
-            <th>Date Completed</th>
             <th>Order Details</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td>iPhone</td>
-            <td>Delivered</td>
-            <td>04/30/2018</td>
+            <td>No orders in the database</td>
+            <td></td>
             <td></td>
         </tr>
         </tbody>
@@ -62,3 +60,4 @@
 
 <a class="button" href="/logout">Log out</a>
 
+</div>
